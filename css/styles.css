@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background: linear-gradient(180deg, #0FEF34 -15.36%, #1DA6DB 42.43%, #022D60 100%);
+    padding: 50px 0; /* Adjusted padding for better spacing */
+}
+
+
+.img-fluid {
+    max-width: 20%; /* Full width for better responsiveness */
+    background-color: white;
+    padding: 10px;
+    border-radius: 45%;
+    margin-bottom: 20px; /* Added margin for spacing */
+}
+
+.action-buttons .inputtxt {
+    height: 150px;
+    border: none;
+    border-radius: 5px;
+    width: 65%;
+    margin: 0px auto; /* Centered and added vertical spacing */
+    display: block; /* To ensure it takes the full width available */
+}
+
+.score-circle {
+    border: 13px solid #D9D9D9;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px auto; /* Centered horizontally and added vertical spacing */
+}
+
+.score-text {
+    font-size: 3rem;
+    color: #A7A7A7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#messageDisplay{
+    font-size: 2rem !important;
+    font-weight: bold;
+}
+
+.text h2 {
+    font-size: 2.5rem; /* Adjust as per the size in your image */
+    font-weight: 700;
+    color: #022d60; /* Adjust the color to match your design */
+}
+
+.convo-score-description {
+    font-size: 1.4em; 
+    color: #333;
+    margin-top: 20px; 
+    width: 80%; /* Adjust as necessary */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.Discourse{
+    padding: 40px 0px;
+    width: 100%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+} 
+
+#analyzeButton {
+    width: 33%; /* Allows the button to size according to its content */
+    background-color: #17ca88;
+    color: white;
+    border: none;
+    margin: 0px auto; /* Centers the button and adds spacing */
+    display: block; /* To ensure it takes the full width available */
+}
+
+.upload-btn {
+    width: 65%; /* Allows the button to size according to its content */
+    background-color: #0068c9;
+    color: white;
+    border: none;
+    margin: 0px auto; /* Centers the button and adds spacing */
+    display: block; /* To ensure it takes the full width available */
+}
+#analyzeButton:hover{
+    color: white;
+    background-color: #99bdba;
+}
+
+/* Responsive styles for all devices */
+@media (max-width: 1024px) {
+    /* Adjustments for tablets and below */
+    .header {
+        padding: 40px 20px;
+    }
+
+    .img-fluid {
+        max-width: 20%; /* Full width for better responsiveness */
+    }
+
+    .action-buttons .inputtxt,
+    .upload-btn,
+    #analyzeButton {
+        width: 90%; /* More width for input and buttons on smaller screens */
+        margin: 0px auto;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Adjustments for small tablets and mobile devices */
+    .header h1,
+    .header h2 {
+        font-size: 1.5rem; /* Smaller headers for smaller screens */
+    }
+
+    .img-fluid {
+        max-width: 40%; /* Full width for better responsiveness */
+        background-color: white;
+        padding: 10px;
+        border-radius: 45%;
+        margin-bottom: 20px; /* Added margin for spacing */
+    }
+
+    .action-buttons .inputtxt,
+    .upload-btn,
+    #analyzeButton {
+        width: 90%; /* More width for input and buttons on smaller screens */
+        margin: 0px auto;
+    }
+
+    .score-circle {
+        width: 150px;
+        height: 150px;
+    }
+
+    .score-text {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Adjustments for very small screens like mobile phones */
+    .header {
+        padding: 30px 10px;
+    }
+
+    .header h1,
+    .header h2 {
+        font-size: 1.25rem; /* Even smaller headers for very small screens */
+    }
+
+    .img-fluid {
+        max-width: 50%; /* Full width for better responsiveness */
+        background-color: white;
+        padding: 10px;
+        border-radius: 45%;
+        margin-bottom: 20px; /* Added margin for spacing */
+    }
+    .action-buttons .inputtxt,
+    .upload-btn,
+    #analyzeButton {
+        width: 90%; /* More width for input and buttons on smaller screens */
+        margin: 0px auto;
+    }
+}
