@@ -55,3 +55,32 @@ function displayScore(score, color, message) {
     scoreText.textContent = `${score}/10`;
     scoreText.style.color = color;
 }
+
+const suggestedPosts = [
+    "Based on what I've seen in my travels, it seems that the communities with the fewest financial resources have the most collaborative cultures. Have you seen the same thing?",
+    "This suggested post frames the content in a more conversational manner and includes a question.",
+    "Part of the reason some cultures rely more on family relationships is due to lack of resources. This is what I keep seeing.",
+    // Add more suggested posts as needed
+];
+
+// Function to copy the current post to clipboard
+function copyToClipboard() {
+    const textArea = document.getElementById('suggestedPost');
+    textArea.select();
+    document.execCommand('copy');
+}
+
+// Function to reroll and display a new suggested post
+function rerollPost() {
+    const randomIndex = Math.floor(Math.random() * suggestedPosts.length);
+    document.getElementById('suggestedPost').value = suggestedPosts[randomIndex];
+}
+
+// Event listeners for the buttons
+document.querySelector('.copy-button').addEventListener('click', copyToClipboard);
+document.querySelector('.reroll-button').addEventListener('click', rerollPost);
+
+// Initialize with a post on page load
+document.addEventListener('DOMContentLoaded', rerollPost);
+
+

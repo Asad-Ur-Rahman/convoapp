@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+        <div class="header">
+            <img src="images/img2.jpg" class="img-fluids" alt="Convo logo" style="width: 100%; height: 400px;">
+        </div>
+
+        <div class="text-center text">
+            <div id="messageDisplay" class="text-center message"></div>
+            <div id="scoreCircle" class="score-circle d-inline-block">
+                <span id="scoreText" class="score-text mt-4">0/10</span>
+            </div>
+            <h2 class="mt-2">convo score</h2>
+            <h5 class="convo-score-description">
+                We've studied thousands of conversations to identify the elements of posts that lead to the most discussions online, the higher your post's convo score, the more your post contains the elements that lead to discussion.
+            </h5>    
+        </div>
+
+        <div class="container my-4">
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="suggested-post">
+                        <h3 class="mt-4" style="color: #022d60; font-weight: 600;">Suggested Post </h3>
+                        <textarea id="suggestedPost" class="form-control suggest mb-2" rows="4"></textarea>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn copy-button" onclick="copyToClipboard()">Copy</button>
+                            <button class="btn reroll-button" onclick="rerollPost()">Reroll</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="center-container mt-5">
+               
+                    <div class="frames">
+                        <div class="circle"></div>
+                        <div class="content" style="padding-top: 15px;">
+                            <h5>This suggested post frames the content in a more conversational manner, and includes a question.</h5>
+                        </div>
+                    </div>
+               
+            </div>
+
+              <div class="container ">
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="suggested-post">
+                            <h3 class="" style="color: #022d60; font-weight: 600;">Original Post </h3>
+                            <textarea id="originalpost" class="form-control suggest mb-2" rows="4"></textarea>  
+                            <div class="d-flex justify-content-between">
+                                <button class="btn copy-button" onclick="copyToClipboard()">Copy</button>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
