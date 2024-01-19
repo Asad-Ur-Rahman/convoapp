@@ -1,5 +1,5 @@
 // Your PAT (Personal Access Token) can be found in the portal under Authentification
-const PAT = '7a721760203b47449d49d281dd2f3c9c';
+const PAT = 'bbb352e53fb048f5a5e9560d7ffb9343';
 
 const RAW_TEXT = 'I will kill you';
 
@@ -12,7 +12,6 @@ function sentimentConvertor(RAW_TEXT) {
     const MODEL_ID = 'GPT-4';
     const MODEL_VERSION_ID = '5d7a50b44aec4a01a9c492c5a5fcf387';
 
-    let corrected = '';
 
     const raw = JSON.stringify({
         "user_app_id": {
@@ -53,9 +52,7 @@ function sentimentConvertor(RAW_TEXT) {
             if (data.status.code != 10000) console.log(data.status);
             else {
                 console.log(data['outputs'][0]['data']['text']['raw']);
-                // return data['outputs'][0]['data']['text']['raw']
-                corrected = data['outputs'][0]['data']['text']['raw']
-                // return corrected
+
             };
         }).catch(error => console.log('error', error));
 
@@ -73,6 +70,7 @@ function sentimentAnalysier(RAW_TEXT) {
     // Change these to whatever model and text URL you want to use
     const MODEL_ID = 'social-media-sentiment-english';
     const MODEL_VERSION_ID = 'fa9e29cb33f841b2832508cb41b30b44';
+    // const RAW_TEXT = 'I love your product very much';
     // To use a hosted text file, assign the url variable
     // const TEXT_FILE_URL = 'https://samples.clarifai.com/negative_sentence_12.txt';
     // Or, to use a local text file, assign the url variable
@@ -81,7 +79,6 @@ function sentimentAnalysier(RAW_TEXT) {
     ///////////////////////////////////////////////////////////////////////////////////
     // YOU DO NOT NEED TO CHANGE ANYTHING BELOW THIS LINE TO RUN THIS EXAMPLE
     ///////////////////////////////////////////////////////////////////////////////////
-
 
     const raw = JSON.stringify({
         "user_app_id": {
@@ -114,31 +111,9 @@ function sentimentAnalysier(RAW_TEXT) {
     // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
     // this will default to the latest version_id
 
-    fetch("https://api.openai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
-        .then(response =>  response.text() )
-        .then(result => { 
-            // console.log(result);
-            
-            const res = JSON.parse(result).outputs[0].data.concepts;
-            let senti = {};
-            let score = 0;
-
-            for (let i = 0; i < res.length; i++) {
-
-                senti[res[i].name] = res[i].value
-            }
-            console.log(senti)
-
-            if (senti['positive'] > senti['negative'] && senti['positive'] > senti['neutral']) {
-                score = round(senti['positive'] * 10);
-                // console.log(score);
-                anlaysis = ['Positive', score];
-            } else if (senti['negative'] > senti['positive'] && senti['negative'] > senti['neutral']) {
-                score = Math.round((senti['negative']) * 10) - 1;
-                // console.log(score);
-                anlaysis = ['Negative', score]
-            }
-        })
+    fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(JSON.parse(result).outputs[0].data))
         .catch(error => console.log('error', error));
 
 }
@@ -146,5 +121,5 @@ function sentimentAnalysier(RAW_TEXT) {
 // console.log(sentimentAnalysier(RAW_TEXT))
 // console.log(sentimentConvertor(RAW_TEXT))
 
-sentimentAnalysier(RAW_TEXT)
 sentimentConvertor(RAW_TEXT)
+sentimentAnalysier(RAW_TEXT)
