@@ -63,7 +63,7 @@ function sentimentConvertor(RAW_TEXT) {
 }
 
 
-async function sentimentAnalysier(RAW_TEXT) {
+function sentimentAnalysier(RAW_TEXT) {
 
 
     // Specify the correct user_id/app_id pairings
@@ -114,7 +114,7 @@ async function sentimentAnalysier(RAW_TEXT) {
     // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
     // this will default to the latest version_id
 
-    return await fetch("https://api.openai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
+    fetch("https://api.openai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
         .then(response =>  response.text() )
         .then(result => { 
             // console.log(result);
@@ -143,9 +143,8 @@ async function sentimentAnalysier(RAW_TEXT) {
 
 }
 
-console.log(sentimentAnalysier(RAW_TEXT))
+// console.log(sentimentAnalysier(RAW_TEXT))
 // console.log(sentimentConvertor(RAW_TEXT))
 
-// let x = sentimentAnalysier(RAW_TEXT)
-// console.log(x)
-// sentimentConvertor(RAW_TEXT)
+sentimentAnalysier(RAW_TEXT)
+sentimentConvertor(RAW_TEXT)
