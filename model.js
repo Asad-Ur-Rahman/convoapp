@@ -3,7 +3,7 @@ const PAT = 'bbb352e53fb048f5a5e9560d7ffb9343';
 
 const RAW_TEXT = 'I will kill you';
 
-function sentimentConvertor(RAW_TEXT) {
+async function sentimentConvertor(RAW_TEXT) {
 
     // Since you're making inferences outside your app's scope
     const USER_ID = 'openai';
@@ -44,23 +44,24 @@ function sentimentConvertor(RAW_TEXT) {
     // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
     // this will default to the latest version_id
 
-    fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
+    let data = await fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
         .then((response) => {
             return response.json();
         })
         .then((data) => {
             if (data.status.code != 10000) console.log(data.status);
             else {
-                console.log(data['outputs'][0]['data']['text']['raw']);
+                return data
+                // console.log(data['outputs'][0]['data']['text']['raw']);
 
             };
         }).catch(error => console.log('error', error));
 
-    // return corrected
+    return data['outputs'][0]['data']['text']['raw']
 }
 
 
-function sentimentAnalysier(RAW_TEXT) {
+async function sentimentAnalysier(RAW_TEXT) {
 
 
     // Specify the correct user_id/app_id pairings
@@ -111,15 +112,52 @@ function sentimentAnalysier(RAW_TEXT) {
     // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
     // this will default to the latest version_id
 
-    fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
+    let data = await fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
         .then(response => response.text())
-        .then(result => console.log(JSON.parse(result).outputs[0].data))
+        .then(result => {return result})
         .catch(error => console.log('error', error));
+    
+    // console.log(JSON.parse(data).outputs[0].data.concepts);
+    return JSON.parse(data).outputs[0].data.concepts
 
 }
 
 // console.log(sentimentAnalysier(RAW_TEXT))
 // console.log(sentimentConvertor(RAW_TEXT))
 
-sentimentConvertor(RAW_TEXT)
-sentimentAnalysier(RAW_TEXT)
+sentimentConvertor(RAW_TEXT).then(data => {
+    let str1 = ''
+    // console.log(String(data));
+    for (let i = 0; i < data.length; i++) {
+
+        // h1.innerText += data[i]
+        str1 += data[i]
+        // console.log(data[i]);
+    }
+    console.log(str1.slice(1,str1.length-1))
+    // h1.innerText = str1.slice(1, str1.length - 1)
+    // You can now use globalData elsewhere, but remember it will be populated asynchronously
+});
+
+sentimentAnalysier(RAW_TEXT).then(data=>{
+    let senti = {};
+    let score = 0;
+    analysis = []
+
+    for (let i = 0; i < data.length; i++) {
+
+        senti[data[i].name] = data[i].value
+    }
+    // console.log(senti)
+
+    if (senti['positive'] > senti['negative'] && senti['positive'] > senti['neutral']) {
+        score = round(senti['positive'] * 10);
+        // console.log(score);
+        analysis = ['Positive', score];
+    } else if (senti['negative'] > senti['positive'] && senti['negative'] > senti['neutral']) {
+        score = Math.round((senti['negative']) * 10) - 1;
+        // console.log(score);
+        analysis = ['Negative', score]
+    }
+    console.log(analysis);
+})
