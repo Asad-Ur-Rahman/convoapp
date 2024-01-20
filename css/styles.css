@@ -169,9 +169,12 @@ body, html {
     }
 
     .img-fluid {
-        max-width: 20%; /* Full width for better responsiveness */
+        max-width: 30%; /* Full width for better responsiveness */
+        background-color: white;
+        padding: 10px;
+        border-radius: 45%;
+        margin-bottom: 20px; /* Added margin for spacing */
     }
-
     .action-buttons .inputtxt,
     .upload-btn,
     #analyzeButton {
@@ -194,10 +197,6 @@ body, html {
 
 @media (max-width: 768px) {
     /* Adjustments for small tablets and mobile devices */
-    .header h1,
-    .header h2 {
-        font-size: 1.5rem; /* Smaller headers for smaller screens */
-    }
 
     .img-fluid {
         max-width: 40%; /* Full width for better responsiveness */
@@ -250,11 +249,6 @@ body, html {
     /* Adjustments for very small screens like mobile phones */
     .header {
         padding: 30px 10px;
-    }
-
-    .header h1,
-    .header h2 {
-        font-size: 1.25rem; /* Even smaller headers for very small screens */
     }
 
     .img-fluid {

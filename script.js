@@ -84,3 +84,18 @@ document.querySelector('.reroll-button').addEventListener('click', rerollPost);
 document.addEventListener('DOMContentLoaded', rerollPost);
 
 
+// JavaScript for scroll animation
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    const circle = document.getElementById('progress-circle');
+
+    // Adjust the following values according to your needs
+    const animationStart = 100; // When the animation should start
+    const animationEnd = 500; // When the animation should end
+
+    let progress = (scrollPosition - animationStart) / (animationEnd - animationStart);
+    progress = Math.min(Math.max(progress, 0), 1); // Clamp value between 0 and 1
+
+    // Apply the progress to circle style, e.g. circle rotation
+    circle.style.transform = `rotate(${progress * 360}deg)`;
+});
