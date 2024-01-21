@@ -18,14 +18,18 @@
             <textarea class="form-control inputtxt" id="postInput" placeholder="Paste your post here, emojis, #s, and all, and we’ll let you know if it will inspire great conversation"></textarea>
             <!-- <input type="file" id="imageUpload" class="d-none" accept="image/*">
             <label for="imageUpload" class="btn btn-secondary btn-lg upload-btn">Upload an Image</label> -->
-            <button class="btn btn-success btn-lg mt-4 analyze-btn" id="analyzeButton">Analyze Post</button>
+            <button class="btn btn-success btn-lg mt-4 analyze-btn" id="analyzeButton"><a href="analysis.html" style="color: white; text-decoration: none;">Analyze Post</a></button>
         </div>
     </div>
 
     <div class="text-center text mt-4">
-        <div id="messageDisplay" class="text-center message"></div>
-        <div id="scoreCircle" class="score-circle d-inline-block">
-            <span id="scoreText" class="score-text mt-4">0/10</span>
+        <div class="text-center message"></div>
+        
+        <div class="score-wrapper">
+            <div class="score-circle d-inline-block">
+                <div class="score-progress"></div> <!-- This will show the progress -->
+                <span class="score-text mt-4"><h1 style="font-size: 1.3em;">0</h1><p class="mt-4" style="font-size: 20px;">/10</p></span>
+            </div>
         </div>
         <h2 class="mt-2">convo score</h2>
         <h5 class="convo-score-description">
@@ -37,7 +41,8 @@
             <h1>Creating Healthy Discourse</h1>
             <h5>AI can be a powerful tool for modeling healthy conversations that promote understanding, empathy, and growth. Our models have analyzed hundreds of thousands of posts to learn what makes a post lead to productive discourse. When you share your post drafts with Convo, we rate it and offer suggestions for how it can be better. </h5>
         </div>
-
+     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.0.1/progressbar.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

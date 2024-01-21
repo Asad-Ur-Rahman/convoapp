@@ -13,48 +13,64 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function calculateConvoScore(post) {
-    var score = 0;
-    score += Math.min(post.length / 100, 3); // Up to 3 points for length
-    score += (post.match(/\?/g) || []).length * 2; // 2 points for each question mark
-    score += (post.match(/!/g) || []).length; // 1 point for each exclamation mark
-    return Math.min(score, 10); // Cap the score at 10
-}
-
-function getScoreStyle(score) {
-    if (score === 10) {
-        return ["#0FEF34", "Great post!"]; // Green
-    } else if (score >= 7) {
-        return ["#FFEB3B", "Pretty good post"]; // Yellow
-    } else if (score >= 5) {
-        return ["#FF9800", "Could be better"]; // Orange
-    } else {
-        return ["#f44336", "Needs work"]; // Red
-    }
-}
-
-function displayScore(score, color, message) {
-    var scoreCircle = document.getElementById('scoreCircle');
-    var scoreText = document.getElementById('scoreText');
-    var messageDisplay = document.getElementById('messageDisplay'); // Ensure this ID is set on an element in your HTML
-
-    // Create the message element if it doesn't exist
-    if (!messageDisplay) {
-        messageDisplay = document.createElement('div');
-        messageDisplay.id = 'messageDisplay';
-        scoreCircle.insertAdjacentElement('beforebegin', messageDisplay);
+        var score = 0;
+        score += Math.min(post.length / 100, 3); // Up to 3 points for length
+        score += (post.match(/\?/g) || []).length * 2; // 2 points for each question mark
+        score += (post.match(/!/g) || []).length; // 1 point for each exclamation mark
+        return Math.min(score, 10); // Cap the score at 10
     }
 
-    // Update the message
-    messageDisplay.textContent = message;
-    messageDisplay.style.color = color;
-    messageDisplay.style.fontSize = "1.5rem";
-    messageDisplay.style.marginBottom = "20px";
 
-    // Update the score circle's appearance
-    scoreCircle.style.borderColor = color;
-    scoreText.textContent = `${score}/10`;
-    scoreText.style.color = color;
-}
+    function getScoreStyle(score) {
+        if (score === 10) {
+            return ["#0FEF34", "Great post!"]; // Green
+        } else if (score >= 7) {
+            return ["#FFEB3B", "Pretty good post"]; // Yellow
+        } else if (score >= 5) {
+            return ["#FF9800", "Could be better"]; // Orange
+        } else {
+            return ["#f44336", "Needs work"]; // Red
+        }
+    }
+
+
+
+    function displayScore(score, color, message) {
+        var scoreCircle = document.getElementById('scoreCircle');
+        var scoreProgress = document.querySelector('.score-progress'); // Ensure this class is set on the progress element
+        var scoreText = document.getElementById('scoreText');
+        var messageDisplay = document.getElementById('messageDisplay'); // Ensure this ID is set on an element in your HTML
+
+        // Create the message element if it doesn't exist
+        if (!messageDisplay) {
+            messageDisplay = document.createElement('div');
+            messageDisplay.id = 'messageDisplay';
+            scoreCircle.insertAdjacentElement('beforebegin', messageDisplay);
+        }
+
+        
+
+        // Update the message
+        messageDisplay.textContent = message;
+        messageDisplay.style.color = color;
+        messageDisplay.style.fontSize = "1.5rem";
+        messageDisplay.style.marginBottom = "20px";
+
+        // Update the score circle's appearance
+        scoreCircle.style.borderColor = color;
+        scoreText.textContent = `${score}/10`;
+        scoreText.style.color = '#A7A7A7';
+
+
+
+        // Update the score text, keeping your original inline styles
+        var scoreText = document.getElementById('scoreText');
+        scoreText.innerHTML = `<h1 style="font-size: 1.3em;">${score}</h1><p class="mt-4"style="font-size: 20px;">/10</p>`;
+        
+        
+        // Apply the conic-gradient to the scoreProgress element
+        scoreProgress.style.background = `conic-gradient(from 0.5turn at 50% 50%, ${color} 0%, ${color} ${deg}deg, #D9D9D9 ${deg}deg 360deg)`;
+    }
 
 const suggestedPosts = [
     "Based on what I've seen in my travels, it seems that the communities with the fewest financial resources have the most collaborative cultures. Have you seen the same thing?",

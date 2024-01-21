@@ -13,8 +13,10 @@
         <img src="images/img.png" class="img-fluid mt-1 mt-lg-3 mt-xl-3 mt-md-4 mx-auto" alt="Convo logo">
         <h1 class="mt-3 mx-auto">Analyzing post</h1>
         <div class="text-center mt-4 mx-auto">
-            <div id="scoreCircle" class="score-circle" style="width: 120px;
-            height: 120px;">
+            <div class="score-wrapper">
+                <div id="scoreCircle" class="score-circle d-inline-block">
+                    <div class="score-progress"></div> <!-- This will show the progress -->
+                </div>
             </div>
             <h5 class="convo-score-description mt-5 pt-2 text-white">
                 We're evaluating how your post compares to those that have sparked productive conversations.
@@ -26,7 +28,18 @@
     </div>
 
     
+    <script>
+        // Function to redirect after a certain time
+        function autoRedirect() {
+            setTimeout(function() {
+                // Change the URL to the desired destination
+                window.location.href = 'posts.html';
+            }, 4000); // Redirect after 5 seconds (adjust the time as needed)
+        }
 
+        // Call the function when the page loads
+        window.onload = autoRedirect;
+    </script>
         
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
