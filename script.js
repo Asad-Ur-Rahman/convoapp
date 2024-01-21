@@ -72,12 +72,12 @@ function displayScore(score, color, message) {
     scoreProgress.style.background = `conic-gradient(from 0.5turn at 50% 50%, ${color} 0%, ${color} ${deg}deg, #D9D9D9 ${deg}deg 360deg)`;
 }
 
-const suggestedPosts = [
-    "Based on what I've seen in my travels, it seems that the communities with the fewest financial resources have the most collaborative cultures. Have you seen the same thing?",
-    "This suggested post frames the content in a more conversational manner and includes a question.",
-    "Part of the reason some cultures rely more on family relationships is due to lack of resources. This is what I keep seeing.",
-    // Add more suggested posts as needed
-];
+// const suggestedPosts = [
+//     "Based on what I've seen in my travels, it seems that the communities with the fewest financial resources have the most collaborative cultures. Have you seen the same thing?",
+//     "This suggested post frames the content in a more conversational manner and includes a question.",
+//     "Part of the reason some cultures rely more on family relationships is due to lack of resources. This is what I keep seeing.",
+//     // Add more suggested posts as needed
+// ];
 
 // Function to copy the current post to clipboard
 function copyToClipboard() {
@@ -87,17 +87,17 @@ function copyToClipboard() {
 }
 
 // Function to reroll and display a new suggested post
-function rerollPost() {
-    const randomIndex = Math.floor(Math.random() * suggestedPosts.length);
-    document.getElementById('suggestedPost').value = suggestedPosts[randomIndex];
-}
+// function rerollPost() {
+//     const randomIndex = Math.floor(Math.random() * suggestedPosts.length);
+//     document.getElementById('suggestedPost').value = suggestedPosts[randomIndex];
+// }
 
 // Event listeners for the buttons
 document.querySelector('.copy-button').addEventListener('click', copyToClipboard);
-document.querySelector('.reroll-button').addEventListener('click', rerollPost);
+document.querySelector('.reroll-button').addEventListener('click', rollAgain);
 
 // Initialize with a post on page load
-document.addEventListener('DOMContentLoaded', rerollPost);
+document.addEventListener('DOMContentLoaded', rollAgain);
 
 
 // JavaScript for scroll animation
@@ -247,7 +247,7 @@ function callBoth(RAW_TEXT) {
     let displayText = document.getElementById("suggestedPost");
     let originalText = document.getElementById("originalpost");
 
-    originalText.innerText = RAW_TEXT;
+    originalText.value = RAW_TEXT;
 
 
 
@@ -265,7 +265,7 @@ function callBoth(RAW_TEXT) {
         }
         console.log(str1.slice(1, str1.length - 1))
         // h1.innerText = str1.slice(1, str1.length - 1)
-        displayText.innerText = str1.slice(1, str1.length - 1)
+        displayText.value = str1.slice(1, str1.length - 1)
         // You can now use globalData elsewhere, but remember it will be populated asynchronously
     });
 
@@ -291,4 +291,25 @@ function callBoth(RAW_TEXT) {
         }
         console.log(analysis);
     })
+}
+
+function rollAgain(RAW_TEXT) {
+
+    let displayText = document.getElementById("suggestedPost");
+
+    sentimentConvertor(RAW_TEXT).then(data => {
+        let str1 = ''
+        // console.log(String(data));
+        for (let i = 0; i < data.length; i++) {
+
+            // h1.innerText += data[i]
+            str1 += data[i]
+            // console.log(data[i]);
+        }
+        console.log(str1.slice(1, str1.length - 1))
+        // h1.innerText = str1.slice(1, str1.length - 1)
+        displayText.value = str1.slice(1, str1.length - 1)
+        // You can now use globalData elsewhere, but remember it will be populated asynchronously
+    });
+
 }

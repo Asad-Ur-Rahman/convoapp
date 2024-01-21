@@ -1,5 +1,5 @@
 // Your PAT (Personal Access Token) can be found in the portal under Authentification
-const PAT = 'bbb352e53fb048f5a5e9560d7ffb9343';
+const PAT = '4478ab0e2f11437fb17aa1145fb51b1f';
 
 const RAW_TEXT = 'I will kill you';
 
@@ -118,8 +118,8 @@ async function sentimentAnalysier(RAW_TEXT) {
         .catch(error => console.log('error', error));
     
     // console.log(JSON.parse(data).outputs[0].data.concepts);
+    
     return JSON.parse(data).outputs[0].data.concepts
-
 }
 
 // console.log(sentimentAnalysier(RAW_TEXT))
@@ -155,7 +155,7 @@ sentimentAnalysier(RAW_TEXT).then(data=>{
         // console.log(score);
         analysis = ['Positive', score];
     } else if (senti['negative'] > senti['positive'] && senti['negative'] > senti['neutral']) {
-        score = Math.round((senti['negative']) * 10) - 1;
+        score = Math.round((1 - senti['negative']) * 10);
         // console.log(score);
         analysis = ['Negative', score]
     }
