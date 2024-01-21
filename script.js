@@ -242,7 +242,7 @@ async function sentimentAnalysier(RAW_TEXT) {
 }
 
 
-function callBoth(RAW_TEXT) {
+function callBoth() {
     // Your PAT (Personal Access Token) can be found in the portal under Authentification
     let displayText = document.getElementById("suggestedPost");
     let originalText = document.getElementById("originalpost");
@@ -293,7 +293,7 @@ function callBoth(RAW_TEXT) {
     })
 }
 
-function rollAgain(RAW_TEXT) {
+function rollAgain() {
 
     let displayText = document.getElementById("suggestedPost");
 
