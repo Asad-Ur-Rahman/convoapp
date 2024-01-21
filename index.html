@@ -18,17 +18,17 @@
             <textarea class="form-control inputtxt" id="postInput" placeholder="Paste your post here, emojis, #s, and all, and we’ll let you know if it will inspire great conversation"></textarea>
             <!-- <input type="file" id="imageUpload" class="d-none" accept="image/*">
             <label for="imageUpload" class="btn btn-secondary btn-lg upload-btn">Upload an Image</label> -->
-            <button class="btn btn-success btn-lg mt-4 analyze-btn" id="analyzeButton"><a href="" style="color: white; text-decoration: none;">Analyze Post</a></button>
+            <button class="btn btn-success btn-lg mt-4 analyze-btn" id="analyzeButton"><a  href="analysis.html" style="color: white; text-decoration: none;" onclick="callBoth()">Analyze Post</a></button>
         </div>
     </div>
 
     <div class="text-center text mt-4">
-        <div id="messageDisplay" class="text-center message"></div>
+        <div  class="text-center message"></div>
         
         <div class="score-wrapper">
             <div id="scoreCircle" class="score-circle d-inline-block">
                 <div class="score-progress"></div> <!-- This will show the progress -->
-                <span id="scoreText" class="score-text mt-4"><h1 style="font-size: 1.3em;">0</h1><p class="mt-4" style="font-size: 20px;">/10</p></span>
+                <span class="score-text mt-4"><h1 style="font-size: 1.3em;">0</h1><p class="mt-4" style="font-size: 20px;">/10</p></span>
             </div>
         </div>
         <h2 class="mt-2">convo score</h2>
