@@ -1,8 +1,27 @@
+// async function getData(){
+//     document.addEventListener('DOMContentLoaded', function () {
+//         var analyzeButton = document.getElementById('analyzeButton');
+//         analyzeButton.addEventListener('click', function () {
+//             var userInput = document.getElementById('postInput').value.trim();
+//             if (userInput) {
+//                 var score = calculateConvoScore(userInput);
+//                 var [color, message] = getScoreStyle(score);
+//                 displayScore(score, color, message);
+//             } else {
+//                 alert("Please enter some text to analyze.");
+//             }
+//         });
+//     });
+// }
+
+
 document.addEventListener('DOMContentLoaded', function () {
     var analyzeButton = document.getElementById('analyzeButton');
     analyzeButton.addEventListener('click', function () {
         var userInput = document.getElementById('postInput').value.trim();
+        // console.log(userInput);
         if (userInput) {
+            // RAW_TEXT = userInput;
             var score = calculateConvoScore(userInput);
             var [color, message] = getScoreStyle(score);
             displayScore(score, color, message);
@@ -11,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
 
 function calculateConvoScore(post) {
     var score = 0;
@@ -118,9 +138,11 @@ window.addEventListener('scroll', () => {
 
 const PAT = 'bbb352e53fb048f5a5e9560d7ffb9343';
 
-const RAW_TEXT = 'I will kill you';
+const RAW_TEXT = 'I will kill dogs and cats';
+// let RAW_TEXT = '';
+// const RAW_TEXT = userInput;
 
-let displayText = document.getElementById("messageDisplay");
+let displayText = document.getElementById("originalpost");
 
 async function sentimentConvertor(RAW_TEXT) {
 
@@ -240,12 +262,18 @@ async function sentimentAnalysier(RAW_TEXT) {
     return JSON.parse(data).outputs[0].data.concepts
 
 }
-
+let inputData = document.getElementById("postInput").value.trim();
+RAW_TEXT = inputData;
 
 function callBoth() {
+    let inputData = document.getElementById("postInput").value.trim();
+    RAW_TEXT = inputData;
+    // getData();
+    // const RAW_TEXT = userInput;
     // Your PAT (Personal Access Token) can be found in the portal under Authentification
     let displayText = document.getElementById("suggestedPost");
     let originalText = document.getElementById("originalpost");
+    let analysisScore = document.getElementById("scoreText")
 
     originalText.value = RAW_TEXT;
 
@@ -270,6 +298,7 @@ function callBoth() {
     });
 
     sentimentAnalysier(RAW_TEXT).then(data => {
+        // let analysisScore = document.getElementById("scoreText")
         let senti = {};
         let score = 0;
         analysis = []
@@ -285,11 +314,13 @@ function callBoth() {
             // console.log(score);
             analysis = ['Positive', score];
         } else if (senti['negative'] > senti['positive'] && senti['negative'] > senti['neutral']) {
-            score = Math.round((senti['negative']) * 10) - 1;
+            score = Math.round(1 - (senti['negative']) * 10);
             // console.log(score);
             analysis = ['Negative', score]
         }
-        console.log(analysis);
+        analysisScore.innerText = analysis[1];
+
+        // console.log(analysis);
     })
 }
 
