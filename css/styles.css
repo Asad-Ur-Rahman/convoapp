@@ -12,6 +12,7 @@ body, html {
     padding: 0;
     width: 100vw;
     overflow-x: hidden;
+    font-family: "Open Sans", Ariel, sans-serif;
 }
 
 .container {
@@ -19,15 +20,27 @@ body, html {
    
 }
 
-
-
-.img-fluid {
-    max-width: 20%; /* Full width for better responsiveness */
-    background-color: white;
-    padding: 10px;
-    border-radius: 45%;
-    margin-bottom: 20px; /* Added margin for spacing */
+header{
+    background: url('/images/img3.png') top center no-repeat;
+    background-size: contain;
+    height: 6em;
+    margin-bottom: 2em;
+    display: block;
 }
+
+.header h1 {
+  font-family: "Arvo", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 2.5rem;
+}
+
+.header h3 {
+    font-family: "Arvo", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.75rem;
+  }
 
 .img-fluids{
     padding: 0% !important;
@@ -54,6 +67,31 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.score{
+    position: relative; /* Needed for absolute positioning of the pseudo-element */
+    border: 7px solid #0FEF34; /* Outer circle border */
+    border-radius: 50%;
+    width: 140px; /* Adjust as needed */
+    height: 140px; /* Adjust as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.score::before {
+    content: ''; /* Needed to display the pseudo-element */
+    position: absolute;
+    top: 10px; /* Space from the top */
+    bottom: 10px; /* Space from the bottom */
+    left: 10px; /* Space from the left */
+    right: 10px; /* Space from the right */
+    z-index: 1;
+    border: 7px solid #0FEF34; /* Inner circle border */
+    border-radius: 50%;
+    pointer-events: none; /* Ensure clicks pass through to the element below */
 }
 
 .score-circle::before {
@@ -86,8 +124,7 @@ body, html {
 }
 
 .text h2 {
-    font-size: 2.5rem; /* Adjust as per the size in your image */
-    font-weight: 700;
+    font-size: 1.5rem; /* Adjust as per the size in your image */
     color: #022d60; /* Adjust the color to match your design */
 }
 
@@ -163,20 +200,19 @@ body, html {
 }
 
 .score-text {
-    font-size: 3rem; /* Default font size for large screens */
+    font-size: 1.8rem; /* Default font size for large screens */
     color: #A7A7A7;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0; /* Remove default margin */
-    transition: font-size 0.5s ease; 
+    margin-top: 45px;
 }
 
 .frames{
     display: flex; 
     align-items: center; 
     gap: 10px; 
-    width: 80%;
+    width: 100%;
     padding-bottom: 1%;         
  
  }
@@ -189,28 +225,11 @@ body, html {
              
  }
 
- .center-container {
-    display: flex;
-    justify-content: center;
-    padding-left: 5%;
-}
-
 /* Responsive styles for all devices */
 @media (max-width: 1024px) {
     /* Adjustments for tablets and below */
-    .header {
-        padding: 40px 20px;
-    }
+ 
     
-
-    .img-fluid {
-        max-width: 30%; /* Full width for better responsiveness */
-        background-color: white;
-        padding: 10px;
-        border-radius: 45%;
-        margin-bottom: 20px; /* Added margin for spacing */
-    }
-
     .img-fluids{
         padding: 0% !important;
         margin: 0% !important;
@@ -218,7 +237,7 @@ body, html {
         height: 350px !important;
     }
     .score-text {
-        font-size: 2.5rem; /* Slightly smaller font size on tablets */
+        font-size: 1.8rem; /* Slightly smaller font size on tablets */
     }
 
     .action-buttons .inputtxt,
@@ -227,12 +246,6 @@ body, html {
         width: 90%; /* More width for input and buttons on smaller screens */
         margin: 0px auto;
     }
-   
-
-.center-container {
-    justify-content: center;
-}
-
 
 .circle {
     width: 140px; /* Slightly smaller on tablets */
@@ -247,13 +260,6 @@ body, html {
 @media (max-width: 768px) {
     /* Adjustments for small tablets and mobile devices */
 
-    .img-fluid {
-        max-width: 40%; /* Full width for better responsiveness */
-        background-color: white;
-        padding: 10px;
-        border-radius: 45%;
-        margin-bottom: 20px; /* Added margin for spacing */
-    }
 
     .img-fluids{
     padding: 0% !important;
@@ -279,8 +285,8 @@ body, html {
     }
 
     .score-text {
-        font-size: 2rem;
-        margin-top: 20px;
+        font-size: 1.5rem;
+        margin-top: 43px;
         
     }
 
@@ -293,21 +299,11 @@ body, html {
         padding: 10px 40px;
     }
 
-.center-container {
-    display: flex;
-    justify-content: center;
-}
 }
 
 @media (max-width: 600px){
  
-    .img-fluid {
-        max-width: 40%; /* Full width for better responsiveness */
-        background-color: white;
-        padding: 10px;
-        border-radius: 45%;
-        margin-bottom: 20px; /* Added margin for spacing */
-    }
+  
     .img-fluids{
         padding: 0% !important;
         margin: 0% !important;
@@ -328,8 +324,8 @@ body, html {
     }
 
     .score-text {
-        font-size: 2rem;
-        margin-top: 20px;
+        font-size: 1.5rem;
+        margin-top: 43px;
         
     }
 
@@ -340,29 +336,13 @@ body, html {
     
     .reroll-button {
         padding: 10px 40px;
-    }
-
-
-.center-container {
-    display: flex;
-    justify-content: center;
-}   
+    } 
 }
 
 @media (max-width: 480px) {
     /* Adjustments for very small screens like mobile phones */
-    .header {
-        padding: 30px 10px;
-    }
 
-    .img-fluid {
-        max-width: 50%; /* Full width for better responsiveness */
-        background-color: white;
-        padding: 10px;
-        border-radius: 45%;
-        margin-bottom: 20px; /* Added margin for spacing */
-    }
-
+ 
     .img-fluids{
         padding: 0% !important;
         margin: 0% !important;
@@ -393,35 +373,27 @@ body, html {
     .reroll-button {
         padding: 10px 30px;
     }
-   
-
-
-.center-container {
-
-    justify-content: center;
-
-}
 }
 
 @media (min-width: 300px) and (max-width: 550px) {
     .circle {
         width: 130px !important; /* medium size for medium screens */
-        height: 60px !important;
+        height: 70px !important;
     }
 }
 
 
-@media (min-width: 550px) and (max-width: 700px) {
+@media (min-width: 550px) and (max-width: 750px) {
     .circle {
-        width: 100px !important; /* medium size for medium screens */
-        height: 60px !important;
+        width: 130px !important; /* medium size for medium screens */
+        height: 70px !important;
     }
 }
 
-@media (min-width: 700px) and (max-width: 1050px) {
+@media (min-width: 750px) and (max-width: 1000px) {
     .circle {
-        width: 80px !important; /* medium size for medium screens */
-        height: 60px !important;
+        width: 90px !important; /* medium size for medium screens */
+        height: 70px !important;
     }
 }
 
